@@ -1,0 +1,193 @@
+<html>
+	<head>
+		<title>Tabela de atributos para a Árvore Geradora</title>
+		<script type="text/javascript" src="sorttable.js"></script>
+		<script type="text/javascript" src="main.js"></script>
+		<script type="text/javascript" src="help_container.js"></script>
+		<script type="text/javascript" src="LaTeXMathML.js"></script>
+    </script>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+	<!-- Start HELP -->
+	<div class='help'>
+		<div class='helpButtons'>
+			<div id='moveHelp'>Passos para escolher o atributo a ser utilizado:</div>
+			<div id='closeHelp'>&#10005;</div>
+		</div>
+		<ol>
+			<li>
+				<dl><dt>Calcula-se a Entropia do Objetivo.<br>
+				Exemplo para dois valores, sendo $x$ e $y$:</dt>
+				<dd>$p_x = \frac{|x|}{|x|+|y|}$</dd>
+				<dd>$p_y = \frac{|y|}{|x|+|y|}$</dd>
+				<dd>$E_{Objetivo} = -\sum_i p_i \log_2(p_i)$</dd>
+				<dd>$E_{Objetivo} = - p_x \log_2(p_x) - p_y \log_2(p_y)$</dd></dl>
+			</li>
+			<li>
+				<dl><dt>Calcula-se a entropia de cada Atributo existente.<br>
+				Nesse momento, deve-se considerar o $x$ e $y$ de cada grupo.<br>
+				Exemplo para o Atributo $\mathtt{A}$, com grupos de valores Baixo e Alto.</dt>
+				<dd>O cálculo de $p_{Baixo}$ seria:</dd>
+				<dd>$x_{Baixo} =$ valor Baixo de Atributo $\mathtt{A}$, onde o Objetivo é $x$</dd>
+				<dd>$y_{Baixo} =$ valor Baixo de Atributo $\mathtt{A}$, onde o Objetivo é $y$</dd>
+				<dd>$p_{x_{Baixo}} = -\frac{|x_{Baixo}|}{|x_{Baixo}|+|y_{Baixo}|}$</dd>
+				<dd>$p_{y_{Baixo}} = -\frac{|y_{Baixo}|}{|x_{Baixo}|+|y_{Baixo}|}$</dd>
+				<dd>$p_{Baixo} = -p_{x_{Baixo}} \log_2(p_{x_{Baixo}})$</dd></dl>
+			</li>
+			<li>
+				<dl><dt>Agora, calcula-se a Entropia do Atributo.<br>
+				Exemplo para Atributo $\mathtt{A}$:</dt>
+				<dd>$E_A = - \frac{|x_{Baixo}|+|y_{Baixo}|}{|x|+|y|} \times p_{Baixo} - \frac{|x_{Alto}|+|y_{Alto}|}{|x|+|y|} \times p_{Alto} $
+				</dd></dl>
+			</li>
+			<li>
+				<dl><dt>Então, calcula-se o Ganho do atributo.<br>
+				Exemplo para Ganho do Atributo $\mathtt{A}$:</dt>
+				<dd>$Ganho_A = E_{Objetivo} - E_{A}$</dd></dl>
+			</li>
+		</ol>
+		<div>Auxiliar de cálculo da Entropia:</div>
+		<div id='auxCalcEntropia'>
+		<div>
+		<input type='text' id='posInputEntropia' placeholder='Qnt. de x'><br>
+		<input type='text' id='negInputEntropia' placeholder='Qnt. de y'>
+		</div>
+		<div><span id='respEntropia'></span></div>
+		</div>
+	</div>
+	<div id='displayHelpButton'>&#63;</div>
+	<div class='buttons'>
+		<div id='restoreButton'>&#8676;</div>
+		<div id='undoButton'>&#8634;</div>
+	</div>
+	<!-- Finish HELP -->
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-cly1">Exemplo</th>
+    <th class="tg-cly1">Tempo</th>
+    <th class="tg-cly1">Temperatura</th>
+    <th class="tg-cly1">Umidade</th>
+    <th class="tg-cly1">Vento</th>
+    <th class="tg-cly1">Vai Jogar</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-cly1">1</td>
+    <td class="tg-cly1">sol</td>
+    <td class="tg-cly1">quente</td>
+    <td class="tg-cly1">alta</td>
+    <td class="tg-cly1">não</td>
+    <td class="tg-cly1">não</td>
+  </tr>
+  <tr>
+    <td class="tg-cly1">2</td>
+    <td class="tg-cly1">sol</td>
+    <td class="tg-cly1">quente</td>
+    <td class="tg-cly1">alta</td>
+    <td class="tg-cly1">sim</td>
+    <td class="tg-cly1">não</td>
+  </tr>
+  <tr>
+    <td class="tg-cly1">3</td>
+    <td class="tg-cly1">nublado</td>
+    <td class="tg-cly1">quente</td>
+    <td class="tg-cly1">alta</td>
+    <td class="tg-cly1">não</td>
+    <td class="tg-cly1">sim</td>
+  </tr>
+  <tr>
+    <td class="tg-cly1">4</td>
+    <td class="tg-cly1">chuva</td>
+    <td class="tg-cly1">médio</td>
+    <td class="tg-cly1">alta</td>
+    <td class="tg-cly1">não</td>
+    <td class="tg-cly1">sim</td>
+  </tr>
+  <tr>
+    <td class="tg-cly1">5</td>
+    <td class="tg-cly1">chuva</td>
+    <td class="tg-cly1">frio</td>
+    <td class="tg-cly1">normal</td>
+    <td class="tg-cly1">não</td>
+    <td class="tg-cly1">sim</td>
+  </tr>
+  <tr>
+    <td class="tg-cly1">6</td>
+    <td class="tg-cly1">chuva</td>
+    <td class="tg-cly1">frio</td>
+    <td class="tg-cly1">normal</td>
+    <td class="tg-cly1">sim</td>
+    <td class="tg-cly1">não</td>
+  </tr>
+  <tr>
+    <td class="tg-cly1">7</td>
+    <td class="tg-cly1">nublado</td>
+    <td class="tg-cly1">frio</td>
+    <td class="tg-cly1">normal</td>
+    <td class="tg-cly1">sim</td>
+    <td class="tg-cly1">sim</td>
+  </tr>
+  <tr>
+    <td class="tg-cly1">8</td>
+    <td class="tg-cly1">sol</td>
+    <td class="tg-cly1">médio</td>
+    <td class="tg-cly1">alta</td>
+    <td class="tg-cly1">não</td>
+    <td class="tg-cly1">não</td>
+  </tr>
+  <tr>
+    <td class="tg-cly1">9</td>
+    <td class="tg-cly1">sol</td>
+    <td class="tg-cly1">frio</td>
+    <td class="tg-cly1">normal</td>
+    <td class="tg-cly1">não</td>
+    <td class="tg-cly1">sim</td>
+  </tr>
+  <tr>
+    <td class="tg-cly1">10</td>
+    <td class="tg-cly1">chuva</td>
+    <td class="tg-cly1">médio</td>
+    <td class="tg-cly1">normal</td>
+    <td class="tg-cly1">não</td>
+    <td class="tg-cly1">sim</td>
+  </tr>
+  <tr>
+    <td class="tg-cly1">11</td>
+    <td class="tg-cly1">sol</td>
+    <td class="tg-cly1">médio</td>
+    <td class="tg-cly1">normal</td>
+    <td class="tg-cly1">sim</td>
+    <td class="tg-cly1">sim</td>
+  </tr>
+  <tr>
+    <td class="tg-cly1">12</td>
+    <td class="tg-cly1">nublado</td>
+    <td class="tg-cly1">médio</td>
+    <td class="tg-cly1">alta</td>
+    <td class="tg-cly1">sim</td>
+    <td class="tg-cly1">sim</td>
+  </tr>
+  <tr>
+    <td class="tg-cly1">13</td>
+    <td class="tg-cly1">nublado</td>
+    <td class="tg-cly1">quente</td>
+    <td class="tg-cly1">normal</td>
+    <td class="tg-cly1">não</td>
+    <td class="tg-cly1">sim</td>
+  </tr>
+  <tr>
+    <td class="tg-cly1">14</td>
+    <td class="tg-cly1">chuva</td>
+    <td class="tg-cly1">médio</td>
+    <td class="tg-cly1">alta</td>
+    <td class="tg-cly1">sim</td>
+    <td class="tg-cly1">não</td>
+  </tr>
+</tbody>
+</table>
+	</body>
+</html>
+
