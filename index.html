@@ -13,13 +13,13 @@
                 padding: 100px;
                 font-size: 24px;
                 background-color: rgba(221, 247, 237, 0.37);
+				background-image: url('noise.png');
                 color: #333;
             }
             div {margin: 10px;}
             a {
-                color: black;
+                color: gray;
                 margin: 10px;
-                width: 200px;
                 text-align: center;
             }
             a:link, a:visited, a:hover, a:active {
@@ -28,13 +28,37 @@
             a:hover {
                 border-bottom: 1px solid black;
                 border-top: 1px solid black;
+				margin: 9px 10px;
+				animation-name: traco;
+				animation-duration: 1s;
+				color: black;
             }
+			@keyframes traco {
+				from {
+					border-color: white;
+					color: gray;
+				}
+				to {
+					border-color: black;
+					color: black;
+				}
+			}
+			li { margin: 10px 0; width: 100%;}
+			ul { width: 250px; }
         </style>
     </head>
     <body>
     <div>Exemplos de Árvores de Decisão:</div>
-    <a href='arvore-decisao-01-Restaurante.html'>Ir ao Restaurante</a>
-    <a href='arvore-decisao-02-Tenis.html'>Jogar Tênis</a>
-    <a href='arvore-decisao-03-Compra.html'>Comprar ou não</a>
+	<ul>
+		<li>
+			<a href='arvore-decisao-01-Restaurante.html'>Ir ao Restaurante</a>
+		</li>
+		<li>
+			<a href='arvore-decisao-02-Tenis.html'>Jogar Tênis</a>
+		</li>
+		<li>
+			<a href='arvore-decisao-03-Compra.html'>Comprar ou não</a>
+		</li>
+	</ul>
     </body>
 </html>

@@ -38,6 +38,7 @@ body {
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
     background-color: rgba(221, 247, 237, 0.37);
+	background-image: url('noise.png');
     font-family: Tahoma, sans-serif;
 }
 table th, table tr td:not(:last-child) {
